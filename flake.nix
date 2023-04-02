@@ -47,7 +47,7 @@
           statix # linter for nix
           shellcheck
           # luajitPackages.lua-lsp
-          lua-language-server
+          # lua-language-server
           nodePackages.prettier # ditto
           nodePackages.vscode-langservers-extracted # lsp servers for json, html, css
           nodePackages.bash-language-server
