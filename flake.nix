@@ -23,12 +23,6 @@
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [
-          (self: super: {
-            vimPlugins =
-              super.vimPlugins {};
-          })
-        ];
       };
 
       recursiveMerge = attrList: let
