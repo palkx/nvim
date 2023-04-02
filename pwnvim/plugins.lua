@@ -270,18 +270,18 @@ M.diagnostics = function()
     .make_client_capabilities(),
     cmp_nvim_lsp.default_capabilities());
 
-  require('rust-tools').setup({
-    server = {
-      on_attach = attached,
-      capabilities = capabilities,
-      standalone = false
-    },
-    tools = {
-      autoSetHints = true,
-      inlay_hints = { auto = true, only_current_line = true },
-      runnables = { use_telescope = true }
-    }
-  })
+  -- require('rust-tools').setup({
+  --   server = {
+  --     on_attach = attached,
+  --     capabilities = capabilities,
+  --     standalone = false
+  --   },
+  --   tools = {
+  --     autoSetHints = true,
+  --     inlay_hints = { auto = true, only_current_line = true },
+  --     runnables = { use_telescope = true }
+  --   }
+  -- })
   require('crates').setup {}
   require('cmp-npm').setup({})
   lspconfig.tsserver.setup { capabilities = capabilities, on_attach = attached }

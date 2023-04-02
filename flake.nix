@@ -69,7 +69,7 @@
         pkgs.neovim-unwrapped
         {buildInputs = dependencies;}
       ];
-      packages.nvim = pkgs.wrapNeovim neovim-augmented {
+      packages.pwnvim = pkgs.wrapNeovim neovim-augmented {
         viAlias = true;
         vimAlias = true;
         withNodeJs = false;
@@ -188,15 +188,15 @@
           };
         };
       };
-      apps.nvim = flake-utils.lib.mkApp {
-        drv = packages.nvim;
-        name = "nvim";
+      apps.pwnvim = flake-utils.lib.mkApp {
+        drv = packages.pwnvim;
+        name = "pwnvim";
         exePath = "/bin/nvim";
       };
-      packages.default = packages.nvim;
-      apps.default = apps.nvim;
+      packages.default = packages.pwnvim;
+      apps.default = apps.pwnvim;
       devShell = pkgs.mkShell {
-        buildInputs = with pkgs; [packages.nvim] ++ dependencies;
+        buildInputs = with pkgs; [packages.pwnvim] ++ dependencies;
       };
     });
 }
