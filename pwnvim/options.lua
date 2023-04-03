@@ -314,7 +314,7 @@ M.defaults = function()
   if SimpleUI then
     cscheme = "ir_black"
   else
-    cscheme = "onedarkpro"
+    cscheme = "onedark"
   end
   vim.cmd("colorscheme " .. cscheme)
   vim.api.nvim_exec([[
