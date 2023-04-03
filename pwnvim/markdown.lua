@@ -115,22 +115,22 @@ M.setup = function()
   --     auto_display = true -- WIP automatic markdown image display, may be prone to breaking
   --   }
   -- end
-  vim.cmd('packadd clipboard-image.nvim')
-  require 'clipboard-image'.setup {
-    default = {
-      img_name = function()
-        vim.fn.inputsave()
-        local name = vim.fn.input({ prompt = "Name: " })
-        -- TODO: swap spaces out for dashes
-        vim.fn.inputrestore()
-        return os.date('%Y-%m-%d') .. "-" .. name
-      end,
-      img_dir = { "%:p:h", "%:t:r:s?$?_attachments?" },
-      img_dir_txt = "%:t:r:s?$?_attachments?",
-      -- TODO: can I put the name as the title somehow?
-      affix = "![](%s)",
-    }
-  }
+  -- vim.cmd('packadd clipboard-image.nvim')
+  -- require 'clipboard-image'.setup {
+  --   default = {
+  --     img_name = function()
+  --       vim.fn.inputsave()
+  --       local name = vim.fn.input({ prompt = "Name: " })
+  --       -- TODO: swap spaces out for dashes
+  --       vim.fn.inputrestore()
+  --       return os.date('%Y-%m-%d') .. "-" .. name
+  --     end,
+  --     img_dir = { "%:p:h", "%:t:r:s?$?_attachments?" },
+  --     img_dir_txt = "%:t:r:s?$?_attachments?",
+  --     -- TODO: can I put the name as the title somehow?
+  --     affix = "![](%s)",
+  --   }
+  -- }
 
 
   -- I have historically always used spaces for indents wherever possible including markdown

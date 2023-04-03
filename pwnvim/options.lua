@@ -338,11 +338,11 @@ M.gui = function()
   -- vim.opt.guifont = "Liga DejaVuSansMono Nerd Font:h16"
   -- vim.opt.guifont = "FiraCode Nerd Font:h16" -- no italics
   -- if vim.loop.os_uname().sysname == "Darwin" then
-  if vim.fn.has('mac') == 1 then
-    vim.opt.guifont = "Hasklug Nerd Font:h18"
-  else
-    vim.opt.guifont = "Hasklug Nerd Font:h9"
-  end
+  -- if vim.fn.has('mac') == 1 then
+  --   vim.opt.guifont = "Hasklug Nerd Font:h18"
+  -- else
+  --   vim.opt.guifont = "Hasklug Nerd Font:h9"
+  -- end
 
   vim.g.neovide_transparency = 0.92
   vim.g.neovide_cursor_animation_length = 0.01
@@ -420,8 +420,8 @@ M.programming = function()
   -- Load direnv when we're in a programming file as we may want
   -- the nix environment provided. Run explicitly since the autocmds
   -- might not otherwise fire.
-  vim.cmd('packadd direnv.vim')
-  vim.cmd('DirenvExport')
+  -- vim.cmd('packadd direnv.vim')
+  -- vim.cmd('DirenvExport')
 end
 
 return M

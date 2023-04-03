@@ -30,15 +30,15 @@ M.config = function()
       group = filetypes })
   autocmd("FileType",
     { pattern = { "c", "ruby", "php", "php3", "perl", "python", "mason", "vim", "sh", "zsh", "scala", "javascript",
-      "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix" },
+      "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix", "terraform" },
       callback = function() require('pwnvim.options').programming() end, group = filetypes })
   autocmd("FileType",
     { pattern = { "lua", "xml" }, callback = function() require('pwnvim.filetypes').lua() end, group = filetypes })
   autocmd("FileType",
     { pattern = { "md", "markdown", "vimwiki" }, callback = function() require('pwnvim.markdown').setup() end,
       group = filetypes })
-  autocmd("FileType",
-    { pattern = { "rust" }, callback = function() require('pwnvim.filetypes').rust() end, group = filetypes })
+--  autocmd("FileType",
+--    { pattern = { "rust" }, callback = function() require('pwnvim.filetypes').rust() end, group = filetypes })
   autocmd("FileType",
     { pattern = { "Outline" }, command = "setlocal nospell", group = filetypes })
 
@@ -49,29 +49,29 @@ M.config = function()
       callback = function() require('pwnvim.filetypes').page() end })
 end
 
-M.rust = function()
-  require('pwnvim.options').programming()
-  require('pwnvim.options').fourspaceindent()
-  vim.bo.makeprg = "cargo"
-  vim.cmd("compiler cargo")
-  vim.g.rustfmt_autosave = 1
-  vim.g.rust_fold = 1
-  vim.api.nvim_exec([[
-    augroup rustquickfix
-      autocmd!
-      autocmd BufReadPost quickfix setlocal foldmethod=expr
-      autocmd BufReadPost quickfix setlocal foldexpr=getline(v:lnum)[0:1]=='\|\|'
-      autocmd BufEnter quickfix setlocal foldexpr=getline(v:lnum)[0:1]=='\|\|'
-      autocmd BufReadPost quickfix setlocal foldlevel=0
-    augroup END
-  ]], false)
-end
+-- M.rust = function()
+--   require('pwnvim.options').programming()
+--   require('pwnvim.options').fourspaceindent()
+--   vim.bo.makeprg = "cargo"
+--   vim.cmd("compiler cargo")
+--   vim.g.rustfmt_autosave = 1
+--   vim.g.rust_fold = 1
+--   vim.api.nvim_exec([[
+--     augroup rustquickfix
+--       autocmd!
+--       autocmd BufReadPost quickfix setlocal foldmethod=expr
+--       autocmd BufReadPost quickfix setlocal foldexpr=getline(v:lnum)[0:1]=='\|\|'
+--       autocmd BufEnter quickfix setlocal foldexpr=getline(v:lnum)[0:1]=='\|\|'
+--       autocmd BufReadPost quickfix setlocal foldlevel=0
+--     augroup END
+--   ]], false)
+-- end
 
-M.c = function()
-  require('pwnvim.options').programming()
-  require('pwnvim.options').fourspaceindent()
-  vim.bo.makeprg = "make"
-end
+-- M.c = function()
+--   require('pwnvim.options').programming()
+--   require('pwnvim.options').fourspaceindent()
+--   vim.bo.makeprg = "make"
+-- end
 
 M.lua = function()
   require('pwnvim.options').programming()
