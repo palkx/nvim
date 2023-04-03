@@ -65,12 +65,10 @@
           packages.myPlugins = with pkgs.vimPlugins; {
             start = with pkgs.vimPlugins; [
                 # Common dependencies of other plugins
+                popup-nvim # dependency
                 plenary-nvim # dependency of some other plugins
-                todo-comments-nvim # highlight TODO comments
+
                 nvim-treesitter # syntax highlight
-                undotree # better vim file edit history
-                nvim-surround # .... updated lua-based alternative to tpope's surround
-                comment-nvim # code commenter
                 crates-nvim # inline intelligence for Cargo.toml
                 nvim-lspconfig # LSP for intilligent coding
                 null-ls-nvim # formatting and linting via lsp system
@@ -84,6 +82,7 @@
 
                 # UI
                 onedarkpro-nvim # colorscheme
+                todo-comments-nvim # highlight TODO comments
                 ir_black # colorscheme for basic terminals
                 telescope-nvim # da best popup fuzzy finder
                 telescope-fzy-native-nvim # with fzy gives better results
@@ -123,6 +122,9 @@
                 zk-nvim # lsp for a folder of notes for searching/linking/etc
                 true-zen-nvim # distraction free, width constrained writing mode
 
+                undotree # better vim file edit history
+                comment-nvim # code commenter
+                nvim-surround # .... updated lua-based alternative to tpope's surround
                 nui-nvim # UI Component Library for Neovim
                 gitsigns-nvim # git file changes
                 project-nvim
