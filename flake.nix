@@ -45,6 +45,7 @@
           nodePackages.prettier # ditto
           nodePackages.bash-language-server # bash lsp
           python310Packages.python-lsp-server # todo: is specifying 310 an issue?
+          alejandra # nix formatter alternative
         ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
