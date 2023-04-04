@@ -37,8 +37,14 @@
           zk # lsp for markdown notes
           terraform-ls # terraform lsp
           tflint # terraform linter
-          nodePackages.bash-language-server # bash lsp
           shellcheck # sh scripts check
+          proselint # ditto
+          luaformatter # ditto for lua
+          lua-language-server
+          prisma-engines # ditto for schema.prisma files
+          nodePackages.prettier # ditto
+          nodePackages.bash-language-server # bash lsp
+          python310Packages.python-lsp-server # todo: is specifying 310 an issue?
         ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
