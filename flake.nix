@@ -38,6 +38,7 @@
           terraform-ls # terraform lsp
           tflint # terraform linter
           nodePackages.bash-language-server # bash lsp
+          shellcheck # sh scripts check
         ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
