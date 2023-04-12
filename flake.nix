@@ -102,6 +102,7 @@
               gitsigns-nvim # git status in gutter
               symbols-outline-nvim # navigate the current file better
               lualine-nvim # nice status bar at bottom
+              vim-tpipeline # combine tmux and vim statusbars into a single one
               vim-bbye # fix bdelete buffer stuff needed with bufferline
               bufferline-nvim
               indent-blankline-nvim # visual indent
