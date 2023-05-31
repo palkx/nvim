@@ -1,8 +1,7 @@
 {
   description = "NVIM Configuration";
   inputs = {
-    # TODO: migrate to 23.05 when it'll be released
-    nixpkgs.url = "github:nixos/nixpkgs/96ba1c52e54e74c3197f4d43026b3f3d92e83ff9";
+    nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = inputs @ {
