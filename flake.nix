@@ -43,6 +43,7 @@
         prisma-engines # ditto for schema.prisma files
         nodePackages.prettier # ditto
         nodePackages.bash-language-server # bash lsp
+        nodePackages.vscode-json-languageserver # json lsp
         python310Packages.python-lsp-server # todo: is specifying 310 an issue?
         alejandra # nix formatter alternative
         statix # linter for nix

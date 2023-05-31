@@ -139,7 +139,6 @@ require 'nvim-tree'.setup {
   -- hijack netrw window on startup
   hijack_netrw = true,
   -- open the tree when running this setup function
-  open_on_setup = false,
   update_cwd = true,
   -- update_to_buf_dir = { enable = true, auto_open = true },
   update_focused_file = { enable = true, update_cwd = true },
