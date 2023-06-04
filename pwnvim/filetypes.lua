@@ -8,11 +8,14 @@ M.config = function()
   -- we fall back to the various language tools installed with pwnvim using this hack
   local initial_path = vim.env.PATH
   autocmd("User DirenvLoaded",
-    { callback = function()
-      if not string.find(vim.env.PATH, initial_path, 0, true) then
-        vim.env.PATH = vim.env.PATH .. ":" .. initial_path
-      end
-    end, group = filetypes })
+    {
+      callback = function()
+        if not string.find(vim.env.PATH, initial_path, 0, true) then
+          vim.env.PATH = vim.env.PATH .. ":" .. initial_path
+        end
+      end,
+      group = filetypes
+    })
 
   autocmd("BufRead", { pattern = { "*.markdown", "*.md" }, command = "setlocal filetype=markdown", group = filetypes })
   autocmd("BufRead", { pattern = { "*.sbt" }, command = "setlocal filetype=scala", group = filetypes })
@@ -25,28 +28,39 @@ M.config = function()
   autocmd("BufRead", { pattern = { "flake.lock" }, command = "setlocal filetype=json", group = filetypes })
 
   autocmd("FileType",
-    { pattern = { "sql", "mysql", "plsql" },
+    {
+      pattern = { "sql", "mysql", "plsql" },
       callback = function() require('cmp').setup.buffer({ sources = { { name = 'vim-dadbod-completion' } } }) end,
-      group = filetypes })
+      group = filetypes
+    })
   autocmd("FileType",
-    { pattern = { "c", "ruby", "php", "php3", "perl", "python", "mason", "vim", "sh", "zsh", "scala", "javascript",
-      "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix", "terraform" },
-      callback = function() require('pwnvim.options').programming() end, group = filetypes })
+    {
+      pattern = { "c", "ruby", "php", "php3", "perl", "python", "mason", "vim", "sh", "zsh", "scala", "javascript",
+        "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix", "terraform" },
+      callback = function() require('pwnvim.options').programming() end,
+      group = filetypes
+    })
   autocmd("FileType",
     { pattern = { "lua", "xml" }, callback = function() require('pwnvim.filetypes').lua() end, group = filetypes })
   autocmd("FileType",
-    { pattern = { "md", "markdown", "vimwiki" }, callback = function() require('pwnvim.markdown').setup() end,
-      group = filetypes })
---  autocmd("FileType",
---    { pattern = { "rust" }, callback = function() require('pwnvim.filetypes').rust() end, group = filetypes })
+    {
+      pattern = { "md", "markdown", "vimwiki" },
+      callback = function() require('pwnvim.markdown').setup() end,
+      group = filetypes
+    })
+  --  autocmd("FileType",
+  --    { pattern = { "rust" }, callback = function() require('pwnvim.filetypes').rust() end, group = filetypes })
   autocmd("FileType",
     { pattern = { "Outline" }, command = "setlocal nospell", group = filetypes })
 
   autocmd("TermOpen", { pattern = { "*" }, command = "setlocal nospell", group = filetypes })
   -- Run when page pager is invoked
   autocmd('User',
-    { pattern = { 'PageOpen', 'PageOpenFile' }, group = filetypes,
-      callback = function() require('pwnvim.filetypes').page() end })
+    {
+      pattern = { 'PageOpen', 'PageOpenFile' },
+      group = filetypes,
+      callback = function() require('pwnvim.filetypes').page() end
+    })
 end
 
 -- M.rust = function()

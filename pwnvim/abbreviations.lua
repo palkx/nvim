@@ -61,4 +61,3 @@ vim.cmd("ab thursday Thursday")
 vim.cmd("ab friday Friday")
 vim.cmd("ab saturday Saturday")
 vim.cmd("ab sunday Sunday")
-

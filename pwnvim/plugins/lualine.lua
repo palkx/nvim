@@ -19,7 +19,7 @@ require('lualine').setup {
         sources = { 'nvim_diagnostic' },
         -- displays diagnostics from defined severity
         sections = { 'error', 'warn' }, -- 'info', 'hint'},}}
-        color_error = "#E06C75", -- changes diagnostic's error foreground color
+        color_error = "#E06C75",        -- changes diagnostic's error foreground color
         color_warn = "#E5C07B"
       }
     }

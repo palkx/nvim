@@ -6,8 +6,8 @@ require("todo-comments").setup {
   signs = false, -- show icons in the signs column
   keywords = {
     FIX = {
-      icon = " ", -- icon used for the sign, and in search results
-      color = "error", -- can be a hex color, or a named color (see below)
+      icon = " ",                                              -- icon used for the sign, and in search results
+      color = "error",                                            -- can be a hex color, or a named color (see below)
       alt = { "ERROR", "FIXME", "BUG", "FIXIT", "ISSUE", "!!!" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
@@ -25,13 +25,13 @@ require("todo-comments").setup {
   -- * after: highlights after the keyword (todo text)
   highlight = {
     multiline = false,
-    before = "", -- "fg" or "bg" or empty
-    keyword = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
-    after = "fg", -- "fg" or "bg" or empty
+    before = "",               -- "fg" or "bg" or empty
+    keyword = "wide",          -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+    after = "fg",              -- "fg" or "bg" or empty
     pattern = [[<(KEYWORDS)]], -- pattern or table of patterns, used for highlightng (vim regex)
-    comments_only = false, -- uses treesitter to match keywords in comments only
-    max_line_len = 400, -- ignore lines longer than this
-    exclude = {}, -- list of file types to exclude highlighting
+    comments_only = false,     -- uses treesitter to match keywords in comments only
+    max_line_len = 400,        -- ignore lines longer than this
+    exclude = {},              -- list of file types to exclude highlighting
   },
   -- list of named colors where we try to extract the guifg from the
   -- list of hilight groups or use the hex color if hl not found as a fallback
