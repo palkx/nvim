@@ -62,7 +62,7 @@
         alejandra # nix formatter alternative
         statix # linter for nix
         vale # linter for prose
-        jdk # for groovy
+        jdk11 # for groovy
         groovy
         pkgs.groovyls # groovy lsp
       ];
@@ -84,7 +84,7 @@
             ''
               lua << EOF
                 package.path = "${self}/?.lua;" .. package.path
-                groovyls_cmd = { "${pkgs.jdk}/bin/java", "-jar", "${pkgs.groovyls}/groovyls-all.jar" }
+                groovyls_cmd = { "${pkgs.jdk11}/bin/java", "-jar", "${pkgs.groovyls}/groovyls-all.jar" }
             ''
             + pkgs.lib.readFile ./init.lua
             + ''

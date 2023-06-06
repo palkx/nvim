@@ -99,11 +99,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1686066760,
-        "narHash": "sha256-RLx3ptgTvSdukaGNaaYZ7qnLja4kpErkllzY8Lpxdew=",
+        "lastModified": 1686068056,
+        "narHash": "sha256-vekjA/8b6lxDtxlsj/IUO81EMy0Z0k9xKcUlaipRwLU=",
         "owner": "miknikif",
         "repo": "npm-groovy-lint",
-        "rev": "91e13f33a9815a827dfe26f2ec0bf15c157470ae",
+        "rev": "445cf4137a92d56716bfdc1a803cbb54a496a308",
         "type": "github"
       },
       "original": {
