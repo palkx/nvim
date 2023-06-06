@@ -34,7 +34,7 @@ M.ui = function()
 end -- UI setup
 
 ----------------------- DIAGNOSTICS --------------------------------
-M.diagnostics = function()
+M.diagnostics = function(groovyls_cmd)
   -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
   require("neodev").setup({
     -- help for neovim lua api
@@ -258,7 +258,8 @@ M.diagnostics = function()
       codeactions.eslint_d, codeactions.gitsigns, codeactions.statix, -- for nix
       diagnostics.statix,                                             -- for nix
       null_ls.builtins.hover.dictionary, codeactions.shellcheck,
-      diagnostics.shellcheck
+      diagnostics.shellcheck,
+      diagnostics.npm_groovy_lint
       -- removed formatting.rustfmt since rust_analyzer seems to do the same thing
     },
     on_attach = attached
@@ -350,9 +351,9 @@ M.diagnostics = function()
     },
     capabilities = capabilities
   }
-  lspconfig.terraformls.setup { on_attach = attached, capabilities = capabilities } -- terraform lsp
-  lspconfig.tflint.setup { on_attach = attached, capabilities = capabilities }      -- terraform lsp
-  lspconfig.groovyls.setup { on_attach = attached, capabilities = capabilities }    -- groovy lsp
+  lspconfig.terraformls.setup { on_attach = attached, capabilities = capabilities }                  -- terraform lsp
+  lspconfig.tflint.setup { on_attach = attached, capabilities = capabilities }                       -- terraform lsp
+  lspconfig.groovyls.setup { on_attach = attached, capabilities = capabilities, cmd = groovyls_cmd } -- groovy lsp
 
   require 'lspsaga'.init_lsp_saga({
     use_saga_diagnostic_sign = not SimpleUI,

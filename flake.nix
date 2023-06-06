@@ -3,16 +3,24 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
     flake-utils.url = "github:numtide/flake-utils";
+    groovyls.url = "github:miknikif/groovyls";
   };
   outputs = inputs @ {
     self,
     nixpkgs,
     flake-utils,
+    groovyls,
     ...
   }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
         inherit system;
+        inherit
+          (import ./overlays.nix {
+            inherit inputs;
+          })
+          overlays
+          ;
       };
 
       recursiveMerge = attrList: let
@@ -51,6 +59,7 @@
         vale # linter for prose
         jdk # for groovy
         groovy
+        groovyls # groovy lsp
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
@@ -70,6 +79,7 @@
             ''
               lua << EOF
                 package.path = "${self}/?.lua;" .. package.path
+                groovyls_cmd = { "${pkgs.jdk}/bin/java", "-jar", "${pkgs.groovyls}/groovyls-all.jar" }
             ''
             + pkgs.lib.readFile ./init.lua
             + ''

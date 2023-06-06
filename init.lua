@@ -12,7 +12,7 @@ require('pwnvim.options').gui()
 require('pwnvim.mappings')
 require('pwnvim.abbreviations')
 require('pwnvim.plugins').ui()
-require('pwnvim.plugins').diagnostics()
+require('pwnvim.plugins').diagnostics(groovyls_cmd) -- groovyls_cmd is dynamically created by nix
 require('pwnvim.plugins').telescope()
 require('pwnvim.plugins').completions()
 require('pwnvim.plugins').notes()
