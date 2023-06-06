@@ -29,6 +29,7 @@
         f [] attrList;
     in rec {
       dependencies = with pkgs; [
+        nil # nix lsp
         ripgrep
         zsh # terminal requires it
         git
