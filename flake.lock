@@ -5,11 +5,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1681202837,
-        "narHash": "sha256-H+Rh19JDwRtpVPAWp64F+rlEtxUWBAQW28eAi3SRSzg=",
+        "lastModified": 1685518550,
+        "narHash": "sha256-o2d0KcvaXzTrPRIo0kOLV0/QXHhDQ5DTi+OxcjO8xqY=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "cfacdce06f30d2b68473a46042957675eebb3401",
+        "rev": "a1720a10a6cfe8234c0e93907ffe81be440f4cef",
         "type": "github"
       },
       "original": {
@@ -36,10 +36,30 @@
         "type": "github"
       }
     },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1685518550,
+        "narHash": "sha256-o2d0KcvaXzTrPRIo0kOLV0/QXHhDQ5DTi+OxcjO8xqY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "a1720a10a6cfe8234c0e93907ffe81be440f4cef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "groovyls": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1686055585,
@@ -57,11 +77,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1686043861,
-        "narHash": "sha256-duF1U12b7vVkf2Lt6noPYVeW8dVFw4CwJmQivhyZxYQ=",
+        "lastModified": 1686059680,
+        "narHash": "sha256-sp0WlCIeVczzB0G8f8iyRg3IYW7KG31mI66z7HIZwrI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "96f8f4a038a190f7511da79ef7e77bec5e4b811a",
+        "rev": "a558f7ac29f50c4b937fb5c102f587678ae1c9fb",
         "type": "github"
       },
       "original": {
@@ -71,19 +91,24 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "npm-groovy-lint": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1685539144,
-        "narHash": "sha256-BvIghafqDrQqWSbnWuDVLD6fiPWRE/foLWSupFM+Hho=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "afc48694f2aca366710295f027a4a423f3f339cc",
+        "lastModified": 1686066760,
+        "narHash": "sha256-RLx3ptgTvSdukaGNaaYZ7qnLja4kpErkllzY8Lpxdew=",
+        "owner": "miknikif",
+        "repo": "npm-groovy-lint",
+        "rev": "91e13f33a9815a827dfe26f2ec0bf15c157470ae",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "release-23.05",
-        "repo": "nixpkgs",
+        "owner": "miknikif",
+        "repo": "npm-groovy-lint",
         "type": "github"
       }
     },
@@ -91,7 +116,8 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "groovyls": "groovyls",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs",
+        "npm-groovy-lint": "npm-groovy-lint"
       }
     },
     "systems": {
@@ -110,6 +136,21 @@
       }
     },
     "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

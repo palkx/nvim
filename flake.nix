@@ -4,12 +4,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
     flake-utils.url = "github:numtide/flake-utils";
     groovyls.url = "github:miknikif/groovyls";
+    groovyls.inputs.nixpkgs.follows = "nixpkgs";
+    npm-groovy-lint.url = "github:miknikif/npm-groovy-lint";
+    npm-groovy-lint.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs @ {
     self,
     nixpkgs,
     flake-utils,
     groovyls,
+    npm-groovy-lint,
     ...
   }:
     flake-utils.lib.eachDefaultSystem (system: let
@@ -53,13 +57,14 @@
         nodePackages.prettier # ditto
         nodePackages.bash-language-server # bash lsp
         nodePackages.vscode-json-languageserver # json lsp
+        pkgs.npm-groovy-lint # groovy lsp
         python310Packages.python-lsp-server # todo: is specifying 310 an issue?
         alejandra # nix formatter alternative
         statix # linter for nix
         vale # linter for prose
         jdk # for groovy
         groovy
-        groovyls # groovy lsp
+        pkgs.groovyls # groovy lsp
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped

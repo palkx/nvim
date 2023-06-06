@@ -235,8 +235,9 @@ M.diagnostics = function(groovyls_cmd)
     debug = false,
     sources = {
       -- formatting.lua_format,
-      formatting.alejandra, -- for nix
-      formatting.prismaFmt, -- for node prisma db orm
+      formatting.alejandra,       -- for nix
+      formatting.prismaFmt,       -- for node prisma db orm
+      formatting.npm_groovy_lint, -- groovy lsp
       formatting.prettier.with {
 
         -- extra_args = {
@@ -259,7 +260,7 @@ M.diagnostics = function(groovyls_cmd)
       diagnostics.statix,                                             -- for nix
       null_ls.builtins.hover.dictionary, codeactions.shellcheck,
       diagnostics.shellcheck,
-      diagnostics.npm_groovy_lint
+      diagnostics.npm_groovy_lint -- groovy lsp
       -- removed formatting.rustfmt since rust_analyzer seems to do the same thing
     },
     on_attach = attached
