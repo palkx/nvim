@@ -352,6 +352,7 @@ M.diagnostics = function()
   }
   lspconfig.terraformls.setup { on_attach = attached, capabilities = capabilities } -- terraform lsp
   lspconfig.tflint.setup { on_attach = attached, capabilities = capabilities }      -- terraform lsp
+  lspconfig.groovyls.setup { on_attach = attached, capabilities = capabilities }    -- groovy lsp
 
   require 'lspsaga'.init_lsp_saga({
     use_saga_diagnostic_sign = not SimpleUI,

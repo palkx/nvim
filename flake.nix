@@ -49,6 +49,8 @@
         alejandra # nix formatter alternative
         statix # linter for nix
         vale # linter for prose
+        jdk # for groovy
+        groovy
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
