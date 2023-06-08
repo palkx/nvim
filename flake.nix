@@ -85,6 +85,7 @@
               lua << EOF
                 package.path = "${self}/?.lua;" .. package.path
                 groovyls_cmd = { "${pkgs.jdk11}/bin/java", "-jar", "${pkgs.groovyls}/groovyls-all.jar" }
+                groovy_lsp_settings = { groovy = { classpath = { "${pkgs.groovy}/lib" } } }
             ''
             + pkgs.lib.readFile ./init.lua
             + ''

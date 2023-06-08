@@ -36,12 +36,18 @@ M.config = function()
   autocmd("FileType",
     {
       pattern = { "c", "ruby", "php", "php3", "perl", "python", "mason", "vim", "sh", "zsh", "scala", "javascript",
-        "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix", "terraform", "groovy", "java" },
+        "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix", "terraform" },
       callback = function() require('pwnvim.options').programming() end,
       group = filetypes
     })
   autocmd("FileType",
     { pattern = { "lua", "xml" }, callback = function() require('pwnvim.filetypes').lua() end, group = filetypes })
+  autocmd("FileType",
+    {
+      pattern = { "groovy", "Jenkinsfile", "java" },
+      callback = function() require('pwnvim.filetypes').groovy() end,
+      group = filetypes
+    })
   autocmd("FileType",
     {
       pattern = { "md", "markdown", "vimwiki" },
@@ -90,6 +96,11 @@ end
 M.lua = function()
   require('pwnvim.options').programming()
   require('pwnvim.options').twospaceindent()
+end
+
+M.groovy = function()
+  require('pwnvim.options').programming()
+  require('pwnvim.options').fourspaceindent()
 end
 
 M.page = function()

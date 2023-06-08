@@ -34,7 +34,7 @@ M.ui = function()
 end -- UI setup
 
 ----------------------- DIAGNOSTICS --------------------------------
-M.diagnostics = function(groovyls_cmd)
+M.diagnostics = function(groovyls_cmd, groovy_lsp_settings)
   -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
   require("neodev").setup({
     -- help for neovim lua api
@@ -352,9 +352,10 @@ M.diagnostics = function(groovyls_cmd)
     },
     capabilities = capabilities
   }
-  lspconfig.terraformls.setup { on_attach = attached, capabilities = capabilities }                  -- terraform lsp
-  lspconfig.tflint.setup { on_attach = attached, capabilities = capabilities }                       -- terraform lsp
-  lspconfig.groovyls.setup { on_attach = attached, capabilities = capabilities, cmd = groovyls_cmd } -- groovy lsp
+  lspconfig.terraformls.setup { on_attach = attached, capabilities = capabilities }                                                  -- terraform lsp
+  lspconfig.tflint.setup { on_attach = attached, capabilities = capabilities }                                                       -- terraform lsp
+  lspconfig.groovyls.setup { on_attach = attached, capabilities = capabilities, cmd = groovyls_cmd, settings =
+  groovy_lsp_settings }                                                                                                              -- groovy lsp
 
   require 'lspsaga'.init_lsp_saga({
     use_saga_diagnostic_sign = not SimpleUI,
