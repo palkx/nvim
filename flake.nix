@@ -1,7 +1,7 @@
 {
   description = "NVIM Configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
     groovyls.url = "github:miknikif/groovyls";
     groovyls.inputs.nixpkgs.follows = "nixpkgs";
@@ -65,6 +65,10 @@
         jdk11 # for groovy
         groovy
         pkgs.groovyls # groovy lsp
+        go # go itself
+        golangci-lint # go lint
+        golangci-lint-langserver # go lint
+        gopls # google go lsp
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped

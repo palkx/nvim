@@ -50,6 +50,12 @@ M.config = function()
     })
   autocmd("FileType",
     {
+      pattern = { "go", "gomod", "gowork", "gotmpl" },
+      callback = function() require('pwnvim.filetypes').go() end,
+      group = filetypes
+    })
+  autocmd("FileType",
+    {
       pattern = { "md", "markdown", "vimwiki" },
       callback = function() require('pwnvim.markdown').setup() end,
       group = filetypes
@@ -99,6 +105,11 @@ M.lua = function()
 end
 
 M.groovy = function()
+  require('pwnvim.options').programming()
+  require('pwnvim.options').fourspaceindent()
+end
+
+M.go = function()
   require('pwnvim.options').programming()
   require('pwnvim.options').fourspaceindent()
 end

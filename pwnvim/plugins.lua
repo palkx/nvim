@@ -352,10 +352,12 @@ M.diagnostics = function(groovyls_cmd, groovy_lsp_settings)
     },
     capabilities = capabilities
   }
-  lspconfig.terraformls.setup { on_attach = attached, capabilities = capabilities }                                                  -- terraform lsp
-  lspconfig.tflint.setup { on_attach = attached, capabilities = capabilities }                                                       -- terraform lsp
+  lspconfig.terraformls.setup { on_attach = attached, capabilities = capabilities }      -- terraform lsp
+  lspconfig.tflint.setup { on_attach = attached, capabilities = capabilities }           -- terraform lsp
   lspconfig.groovyls.setup { on_attach = attached, capabilities = capabilities, cmd = groovyls_cmd, settings =
-  groovy_lsp_settings }                                                                                                              -- groovy lsp
+      groovy_lsp_settings }                                                              -- groovy lsp
+  lspconfig.golangci_lint_ls.setup { capabilities = capabilities, on_attach = attached } -- go support
+  lspconfig.gopls.setup { capabilities = capabilities, on_attach = attached }            -- go support
 
   require 'lspsaga'.init_lsp_saga({
     use_saga_diagnostic_sign = not SimpleUI,
