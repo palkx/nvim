@@ -238,6 +238,7 @@ M.diagnostics = function(groovyls_cmd, groovy_lsp_settings)
       formatting.alejandra,       -- for nix
       formatting.prismaFmt,       -- for node prisma db orm
       formatting.npm_groovy_lint, -- groovy lsp
+      formatting.packer,          -- hcl formatter
       formatting.prettier.with {
 
         -- extra_args = {
@@ -251,14 +252,19 @@ M.diagnostics = function(groovyls_cmd, groovy_lsp_settings)
           "json", "jsonc", "yaml", "graphql", "handlebars", "svelte"
         },
         disabled_filetypes = { "markdown" }
-      }, diagnostics.eslint_d.with {
-      args = {
-        "-f", "json", "--stdin", "--stdin-filename", "$FILENAME"
-      }
-    },                                                                -- diagnostics.vale,
-      codeactions.eslint_d, codeactions.gitsigns, codeactions.statix, -- for nix
-      diagnostics.statix,                                             -- for nix
-      null_ls.builtins.hover.dictionary, codeactions.shellcheck,
+      },
+      diagnostics.eslint_d.with {
+        args = {
+          "-f", "json", "--stdin", "--stdin-filename", "$FILENAME"
+        }
+      },
+      -- diagnostics.vale,
+      codeactions.eslint_d, -- for nix
+      codeactions.gitsigns, -- for nix
+      codeactions.statix,   -- for nix
+      diagnostics.statix,   -- for nix
+      null_ls.builtins.hover.dictionary,
+      codeactions.shellcheck,
       diagnostics.shellcheck,
       diagnostics.npm_groovy_lint -- groovy lsp
       -- removed formatting.rustfmt since rust_analyzer seems to do the same thing

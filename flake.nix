@@ -69,6 +69,7 @@
         golangci-lint # go lint
         golangci-lint-langserver # go lint
         gopls # google go lsp
+        packer # hcl formatter
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped

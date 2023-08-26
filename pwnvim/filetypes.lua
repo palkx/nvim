@@ -36,7 +36,7 @@ M.config = function()
   autocmd("FileType",
     {
       pattern = { "c", "ruby", "php", "php3", "perl", "python", "mason", "vim", "sh", "zsh", "scala", "javascript",
-        "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix", "terraform" },
+        "javascriptreact", "typescript", "typescriptreact", "html", "svelte", "css", "nix", "terraform", "hcl" },
       callback = function() require('pwnvim.options').programming() end,
       group = filetypes
     })
