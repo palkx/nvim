@@ -61,26 +61,26 @@
         withPython3 = false;
         withRuby = false;
         extraPython3Packages = false;
-        extraMakeWrapperArgs = ''--prefix PATH : "${pkgs.lib.makeBinPath dependencies}"'';
+        extraMakeWrapperArgs = ''--prefix PATH : "${pkgs.lib.makeBinPath dependencies}" --set XDG_CONFIG_HOME "${self}"'';
         # make sure impatient is loaded before everything else to speed things up
-        configure = {
-          customRC =
-            ''
-              lua << EOF
-                package.path = "${self}/lua/?.lua;" .. package.path
-            ''
-            + pkgs.lib.readFile ./init.lua
-            + ''
-              EOF
-            '';
-          # packages.myPlugins = with pkgs.vimPlugins; {
-          #   start = with pkgs.vimPlugins; [];
-          #   opt = with pkgs.vimPlugins; [];
-          # };
-        };
+        # configure = {
+        #   customRC =
+        #     ''
+        #       lua << EOF
+        #         package.path = "${self}/lua/?.lua;" .. package.path
+        #     ''
+        #     + pkgs.lib.readFile ./init.lua
+        #     + ''
+        #       EOF
+        #     '';
+        #   # packages.myPlugins = with pkgs.vimPlugins; {
+        #   #   start = with pkgs.vimPlugins; [];
+        #   #   opt = with pkgs.vimPlugins; [];
+        #   # };
+        # };
       };
       apps.pwnvim = flake-utils.lib.mkApp {
-        drv = packages.pwnvim;
+        drv = self.packages.${system}.pwnvim;
         name = "pwnvim";
         exePath = "/bin/nvim";
       };
