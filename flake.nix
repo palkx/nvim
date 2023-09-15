@@ -47,6 +47,8 @@
         zulu #java11
         fish
         fzf
+        perl536
+        perl536Packages.CPAN
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
