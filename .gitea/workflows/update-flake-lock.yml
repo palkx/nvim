@@ -26,6 +26,6 @@ jobs:
           git status
           git diff
           git config --global user.name "Gitea Bot"
-          git config --global user.config "gitea@xaked.com"
+          git config --global user.email "gitea@xaked.com"
           git add flake.lock
           git commit -m '[Gitea CI]: bump flake.lock versions'
