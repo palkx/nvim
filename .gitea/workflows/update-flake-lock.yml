@@ -17,6 +17,8 @@ jobs:
         run: apt-get update && apt-get install -y sudo
       - name: Setup nix
         uses: cachix/install-nix-action@v22
+        with:
+          github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
       - name: Update nix flake lockfile
         run: |
           git status
