@@ -21,9 +21,17 @@ jobs:
           github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
       - name: Update nix flake lockfile
         run: |
-          git status
           nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update
           git status
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v16
+        id: verify-changed-files
+        with:
+          files: |
+            flake.lock
+      - name: Run step only when any of the above files change.
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
           git diff
           git config --global user.name "Gitea Bot"
           git config --global user.email "gitea@xaked.com"
