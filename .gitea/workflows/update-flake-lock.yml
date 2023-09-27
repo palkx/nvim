@@ -11,7 +11,7 @@ jobs:
   lockfile:
     runs-on: ubuntu-latest
     container:
-      image: docker.io/nix/nix:latest
+      image: docker.io/nixos/nix:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
