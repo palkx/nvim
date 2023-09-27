@@ -11,13 +11,17 @@ jobs:
   lockfile:
     runs-on: ubuntu-latest
     container:
-      image: docker.io/nixos/nix:latest
+      image: docker.io/nixpkgs/nix:nixos-23.05
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Update nix flake lockfile
         run: |
-          env
-          which nix
-          ls -la
+          git status
           nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update
+          git status
+          git diff
+          git config --global user.name "Gitea Bot"
+          git config --global user.config "gitea@xaked.com"
+          git add flake.lock
+          git commit -m '[Gitea CI]: bump flake.lock versions'
