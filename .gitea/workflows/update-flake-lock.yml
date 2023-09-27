@@ -10,15 +10,14 @@ on:
 jobs:
   lockfile:
     runs-on: ubuntu-latest
+    container:
+      image: docker.io/nix/nix:latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-      - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@main
-        with:
-          pr-title: "Update flake.lock" # Title of PR to be created
-          pr-labels: | # Labels to be set on the PR
-            dependencies
-            automated
+      - name: Update nix flake lockfile
+        run: |
+          env
+          which nix
+          ls -la
+          nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update
