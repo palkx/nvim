@@ -32,4 +32,5 @@ jobs:
           git config --global user.name "Gitea Bot"
           git config --global user.email "gitea@xaked.com"
           git add flake.lock
-          git commit -m '[Gitea CI]: bump flake.lock versions'
+          git commit -S -m '[Gitea CI]: bump flake.lock versions'
+          git push
