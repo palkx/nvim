@@ -24,7 +24,7 @@ require("lazy").setup({
     { import = "plugins.tokyonight" },
     { import = "plugins.telescope" },
     { import = "plugins.mason" },
-    { import = "plugins.null-ls" },
+    { import = "plugins.none-ls" },
     { import = "plugins.nvim-lspconfig" },
     { import = "plugins.nvim-treesitter" },
   },
