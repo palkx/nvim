@@ -23,10 +23,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "plugins.tokyonight" },
     { import = "plugins.telescope" },
-    { import = "plugins.mason" },
-    { import = "plugins.none-ls" },
-    { import = "plugins.nvim-lspconfig" },
-    { import = "plugins.nvim-treesitter" },
+    { import = "plugins.lang.markdown" },
+    { import = "plugins.lang.shell" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
