@@ -16,7 +16,7 @@ return {
       local nls = require("null-ls")
       opts.sources = opts.sources or {}
       vim.list_extend(opts.sources, {
-        -- nls.builtins.code_actions.shellcheck,
+        nls.builtins.code_actions.shellcheck,
         -- nls.builtins.diagnostics.shellcheck,
         nls.builtins.formatting.shfmt,
       })
