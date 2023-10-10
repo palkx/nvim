@@ -20,7 +20,11 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.terraform" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    -- TODO: remove when fixed
+    -- See https://xaked.com/xaked/nvim/issues/13
+    -- Looks like prettier is deleting end of the file randomly. It's happend in md and yaml files already
+    -- Disabling it for now
+    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "plugins.tokyonight" },
     { import = "plugins.telescope" },
     { import = "plugins.lang.markdown" },
