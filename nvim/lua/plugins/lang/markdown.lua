@@ -4,7 +4,8 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, {
-        "marksman",
+        -- See https://xaked.com/xaked/nvim/issues/9
+        -- "marksman",
         "mdformat",
       })
     end,
@@ -19,14 +20,15 @@ return {
       })
     end,
   },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        marksman = {},
-      },
-    },
-  },
+  -- See https://xaked.com/xaked/nvim/issues/9
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       marksman = {},
+  --     },
+  --   },
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
