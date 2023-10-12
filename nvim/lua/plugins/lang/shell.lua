@@ -18,7 +18,7 @@ return {
       vim.list_extend(opts.sources, {
         nls.builtins.code_actions.shellcheck,
         -- nls.builtins.diagnostics.shellcheck,
-        nls.builtins.formatting.shfmt,
+        nls.builtins.formatting.shfmt.with({ args = { "-filename", "$FILENAME", "-i", "2" } }),
       })
     end,
   },
