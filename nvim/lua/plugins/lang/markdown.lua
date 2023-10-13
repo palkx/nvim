@@ -10,14 +10,17 @@ return {
     end,
   },
   {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = opts.sources or {}
-      vim.list_extend(opts.sources, {
-        nls.builtins.formatting.mdformat,
-      })
-    end,
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      formatters_by_ft = {
+        ["md"] = { "mdformat" },
+        ["markdown"] = { "mdformat" },
+        ["markdown.mdx"] = { "mdformat" },
+      },
+      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+    },
   },
   {
     "neovim/nvim-lspconfig",

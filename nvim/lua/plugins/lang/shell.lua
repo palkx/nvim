@@ -11,15 +11,20 @@ return {
     end,
   },
   {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = opts.sources or {}
-      vim.list_extend(opts.sources, {
-        nls.builtins.code_actions.shellcheck,
-        -- nls.builtins.diagnostics.shellcheck,
-        nls.builtins.formatting.shfmt.with({ args = { "-filename", "$FILENAME", "-i", "2" } }),
-      })
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      formatters_by_ft = {
+        ["sh"] = { "shfmt" },
+        ["command"] = { "shfmt" },
+      },
+      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+    },
+    config = function(_, opts)
+      local util = require("conform.util")
+      util.add_formatter_args(require("conform.formatters.shfmt"), { "-i", "2" })
+      require("conform").setup(opts)
     end,
   },
   {
