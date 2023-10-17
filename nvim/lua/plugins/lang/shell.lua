@@ -19,13 +19,12 @@ return {
         ["sh"] = { "shfmt" },
         ["command"] = { "shfmt" },
       },
-      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+      formatters = {
+        shfmt = {
+          prepend_args = { "-i", "2", "-ci" },
+        },
+      },
     },
-    config = function(_, opts)
-      local util = require("conform.util")
-      util.add_formatter_args(require("conform.formatters.shfmt"), { "-i", "2" })
-      require("conform").setup(opts)
-    end,
   },
   {
     "neovim/nvim-lspconfig",
