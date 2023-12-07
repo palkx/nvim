@@ -60,7 +60,6 @@
         withNodeJs = false;
         withPython3 = false;
         withRuby = false;
-        extraPython3Packages = false;
         extraMakeWrapperArgs = ''--prefix PATH : "${pkgs.lib.makeBinPath dependencies}" --set XDG_CONFIG_HOME "${self}"'';
       };
       apps.pwnvim = flake-utils.lib.mkApp {
