@@ -1,14 +1,16 @@
 name: update-flake-lock
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 1 * * *"
 
 jobs:
   lockfile:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          ref: "main"
       - name: Setup sudo (required for the next step)
         run: apt-get update && apt-get install -y sudo
       - name: Setup nix
@@ -29,7 +31,7 @@ jobs:
         run: |
           git diff
           git config --global user.name "Gitea Bot"
-          git config --global user.email "gitea@xaked.com"
+          git config --global user.email "bot@git.palkoi.net"
           git add flake.lock
-          git commit -S -m '[Gitea CI]: bump flake.lock versions'
+          git commit -m 'choke(nix-lock): bump flake.lock versions'
           git push

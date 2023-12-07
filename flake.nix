@@ -1,7 +1,7 @@
 {
   description = "NVIM Configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = inputs @ {
@@ -62,22 +62,6 @@
         withRuby = false;
         extraPython3Packages = false;
         extraMakeWrapperArgs = ''--prefix PATH : "${pkgs.lib.makeBinPath dependencies}" --set XDG_CONFIG_HOME "${self}"'';
-        # make sure impatient is loaded before everything else to speed things up
-        # configure = {
-        #   customRC =
-        #     ''
-        #       lua << EOF
-        #         package.path = "${self}/lua/?.lua;" .. package.path
-        #     ''
-        #     + pkgs.lib.readFile ./init.lua
-        #     + ''
-        #       EOF
-        #     '';
-        #   # packages.myPlugins = with pkgs.vimPlugins; {
-        #   #   start = with pkgs.vimPlugins; [];
-        #   #   opt = with pkgs.vimPlugins; [];
-        #   # };
-        # };
       };
       apps.pwnvim = flake-utils.lib.mkApp {
         drv = self.packages.${system}.pwnvim;
