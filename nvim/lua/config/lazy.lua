@@ -25,7 +25,7 @@ require("lazy").setup({
     { import = "plugins.tokyonight" },
     { import = "plugins.telescope" },
     { import = "plugins.lang.shell" },
-    { import = "plugins.misc.tmux-navigator.lua" },
+    { import = "plugins.misc.tmux-navigator" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
