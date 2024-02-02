@@ -36,8 +36,8 @@
         lazygit
         wget
         cargo
-        python310
-        python310Packages.pip
+        python311
+        python311Packages.pip
         php82
         php82Packages.composer
         go
@@ -49,6 +49,9 @@
         fzf
         perl536
         perl536Packages.CPAN
+        unzip
+        tree-sitter
+        gcc
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
