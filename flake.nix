@@ -52,6 +52,7 @@
         unzip
         tree-sitter
         gcc
+        gnumake
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
