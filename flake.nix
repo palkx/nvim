@@ -53,6 +53,7 @@
         tree-sitter
         gcc
         gnumake
+        lazygit
       ];
       neovim-augmented = recursiveMerge [
         pkgs.neovim-unwrapped
