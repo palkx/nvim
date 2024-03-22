@@ -33,7 +33,6 @@
         fd
         git
         curl # needed to fetch titles from urls
-        lazygit
         wget
         cargo
         python311
