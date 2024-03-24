@@ -3,78 +3,38 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     flake-utils.url = "github:numtide/flake-utils";
+    neovim = {
+      url = "github:neovim/neovim/stable?dir=contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs @ {
     self,
     nixpkgs,
     flake-utils,
+    neovim,
     ...
   }:
     flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {
-        inherit system;
+      overlayFlakeInputs = prev: final: {
+        neovim = neovim.packages.${system}.neovim;
       };
 
-      recursiveMerge = attrList: let
-        f = attrPath:
-          builtins.zipAttrsWith (n: values:
-            if pkgs.lib.tail values == []
-            then pkgs.lib.head values
-            else if pkgs.lib.all pkgs.lib.isList values
-            then pkgs.lib.unique (pkgs.lib.concatLists values)
-            else if pkgs.lib.all pkgs.lib.isAttrs values
-            then f (attrPath ++ [n]) values
-            else pkgs.lib.last values);
-      in
-        f [] attrList;
+      overlayLazyVim = prev: final: {
+        lazyVim = import ./packages/lazyVim.nix {
+          pkgs = final;
+        };
+      };
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [overlayFlakeInputs overlayLazyVim];
+      };
     in rec {
-      dependencies = with pkgs; [
-        ripgrep
-        fd
-        git
-        curl # needed to fetch titles from urls
-        wget
-        cargo
-        python311
-        python311Packages.pip
-        php82
-        php82Packages.composer
-        go
-        ruby
-        luarocks
-        nodejs
-        zulu #java11
-        fish
-        fzf
-        perl536
-        perl536Packages.CPAN
-        unzip
-        tree-sitter
-        gcc
-        gnumake
-        lazygit
-      ];
-      neovim-augmented = recursiveMerge [
-        pkgs.neovim-unwrapped
-        {buildInputs = dependencies;}
-      ];
-      packages.pwnvim = pkgs.wrapNeovim neovim-augmented {
-        viAlias = true;
-        vimAlias = true;
-        withNodeJs = false;
-        withPython3 = false;
-        withRuby = false;
-        extraMakeWrapperArgs = ''--prefix PATH : "${pkgs.lib.makeBinPath dependencies}" --set XDG_CONFIG_HOME "${self}"'';
-      };
-      apps.pwnvim = flake-utils.lib.mkApp {
-        drv = self.packages.${system}.pwnvim;
-        name = "pwnvim";
-        exePath = "/bin/nvim";
-      };
-      packages.default = packages.pwnvim;
-      apps.default = apps.pwnvim;
-      devShell = pkgs.mkShell {
-        buildInputs = with pkgs; [packages.pwnvim] ++ dependencies;
+      packages.default = pkgs.lazyVim;
+      apps.default = {
+        type = "app";
+        program = "${packages.default}/bin/nvim";
       };
     });
 }

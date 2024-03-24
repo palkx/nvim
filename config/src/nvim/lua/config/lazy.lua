@@ -29,6 +29,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "plugins.tokyonight" },
     { import = "plugins.telescope" },
+    { import = "plugins.lang.nix" },
     { import = "plugins.lang.shell" },
     { import = "plugins.misc.tmux-navigator" },
     { import = "plugins.undotree" },
