@@ -31,10 +31,12 @@
         overlays = [overlayFlakeInputs overlayLazyVim];
       };
     in rec {
-      packages.default = pkgs.lazyVim;
-      apps.default = {
+      packages.lazyVim = pkgs.lazyVim;
+      apps.lazyVim = {
         type = "app";
         program = "${packages.default}/bin/nvim";
       };
+      packages.default = packages.lazyVim;
+      apps.default = apps.lazyVim;
     });
 }
