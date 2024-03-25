@@ -24,4 +24,5 @@ jobs:
           nix --extra-experimental-features nix-command --extra-experimental-features flakes flake check --all-systems
       - name: Build nix flake
         run: |
+          rm -rf /homeless-shelter
           nix --extra-experimental-features nix-command --extra-experimental-features flakes build --no-link .#
