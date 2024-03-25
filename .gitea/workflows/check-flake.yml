@@ -19,9 +19,10 @@ jobs:
         uses: cachix/install-nix-action@v26
         with:
           github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          nix_path: nixpkgs=channel:nixos-23.11
       - name: Build nix flake
         run: |
-          rm -rf /homeless-shelter
+          while true; do sleep 1; rm -rf /homeless-shelter; done &
           nix build
       - name: Check nix flake
         run: nix flake check --all-systems
