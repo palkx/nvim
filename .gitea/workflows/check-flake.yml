@@ -21,7 +21,5 @@ jobs:
           github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
       - name: Check nix flake
         run: nix --extra-experimental-features nix-command --extra-experimental-features flakes flake check --all-systems
-      - name: Install NixCI
-        run: nix profile install github:srid/nixci
       - name: Build nix flake
-        run: nixci
+        run: nix --extra-experimental-features nix-command --extra-experimental-features build --no-link --impure .#
