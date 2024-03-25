@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  lockfile:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -21,9 +21,7 @@ jobs:
           github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
       - name: Build nix flake
         run: |
-          # Deny root access to homeless-shelter
-          sudo mkdir /homeless-shelter
-          sudo chmod 000 /homeless-shelter
+          rm -rf /homeless-shelter
           nix build
       - name: Check nix flake
         run: nix flake check --all-systems
