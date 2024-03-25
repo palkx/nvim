@@ -19,7 +19,7 @@ jobs:
         uses: cachix/install-nix-action@v26
         with:
           github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
-      - name: Check nix flake
-        run: nix --extra-experimental-features nix-command --extra-experimental-features flakes flake check --all-systems
       - name: Build nix flake
-        run: nix --extra-experimental-features nix-command --extra-experimental-features build --no-link --impure .#
+        run: nix build
+      - name: Check nix flake
+        run: nix flake check --all-systems
