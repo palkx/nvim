@@ -33,6 +33,7 @@ require("lazy").setup({
     { import = "plugins.lang.shell" },
     { import = "plugins.misc.tmux-navigator" },
     { import = "plugins.undotree" },
+    { import = "plugins.ui.colorizer" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
