@@ -16,7 +16,7 @@ jobs:
       - name: Setup sudo (required for the next step)
         run: apt-get update && apt-get install -y sudo
       - name: Setup nix
-        uses: cachix/install-nix-action@v26
+        uses: cachix/install-nix-action@v27
         with:
           github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
           nix_path: nixpkgs=channel:nixos-23.11
