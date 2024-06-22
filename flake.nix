@@ -1,7 +1,7 @@
 {
   description = "NVIM Configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     neovim = {
       url = "github:neovim/neovim/stable?dir=contrib";
@@ -9,7 +9,6 @@
     };
   };
   outputs = inputs @ {
-    self,
     nixpkgs,
     flake-utils,
     neovim,
@@ -17,7 +16,9 @@
   }:
     flake-utils.lib.eachDefaultSystem (system: let
       overlayFlakeInputs = prev: final: {
-        neovim = neovim.packages.${system}.neovim;
+        neovim = neovim.packages.${system}.neovim.overrideAttrs (oa: {
+          nativeBuildInputs = oa.nativeBuildInputs ++ [final.libtermkey];
+        });
       };
 
       overlayLazyVim = prev: final: {
