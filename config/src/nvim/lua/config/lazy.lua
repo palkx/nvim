@@ -34,7 +34,9 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-    { import = "plugins.tokyonight" },
+    { import = "plugins.catppuccin" },
+    -- { import = "plugins.tokyonight" },
+    -- { import = "plugins.lang.nix" },
     { import = "plugins.lang.shell" },
     { import = "plugins.misc.tmux-navigator" },
   },
@@ -51,7 +53,7 @@ require("lazy").setup({
     lazyvim = false,
     neovim = false,
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "catppuccin-macchiato" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
