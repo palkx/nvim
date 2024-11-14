@@ -45,8 +45,9 @@ jobs:
         id: release
         with:
           release: true
-          git-user: "Cog Bot"
-          git-user-email: "mycoolproject@org.org"
+          git-user: "Gitea Bot"
+          git-user-email: "bot@git.palkoi.net"
+          check-latest-tag-only: true
       # The version number is accessible as a github action output
       - name: Print version
         run: "echo '${{ steps.release.outputs.version }}'"
