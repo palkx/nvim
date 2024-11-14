@@ -40,14 +40,27 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - run: |
+          git config user.name gitea-bot
+          git config user.email bot@git.palkoi.net
+          git config --global user.email bot@git.palkoi.net
+          git config --global user.name gitea-bot
+
       - name: Semver release
         uses: cocogitto/cocogitto-action@v3
         id: release
         with:
           release: true
-          git-user: "Gitea Bot"
+          git-user: "gitea-bot"
           git-user-email: "bot@git.palkoi.net"
           check-latest-tag-only: true
-      # The version number is accessible as a github action output
-      - name: Print version
-        run: "echo '${{ steps.release.outputs.version }}'"
+
+      - name: Generate Changelog
+        run: cog changelog --at ${{ steps.release.outputs.version }} -t full_hash > GITHUB_CHANGELOG.md
+
+      - name: Upload github release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: GITHUB_CHANGELOG.md
+          tag_name: ${{ steps.release.outputs.version }}
