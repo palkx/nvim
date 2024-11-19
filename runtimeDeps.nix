@@ -21,8 +21,8 @@
       zulu # java11
       fish
       fzf
-      perl536
-      perl536Packages.CPAN
+      perl540
+      perl540Packages.CPAN
       unzip
       tree-sitter
       gnumake
