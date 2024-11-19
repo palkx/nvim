@@ -1,0 +1,15 @@
+---
+name: build-flake
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build flake
+    uses: ./.gitea/workflows/build-flake.yml
+  release:
+    name: Release a new version
+    needs: build
+    uses: xaked/actions/.gitea/workflows/release.yml@main

@@ -1,0 +1,34 @@
+---
+name: build-flake
+on:
+  workflow_call:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: "main"
+      - name: Setup sudo (required for the next step)
+        run: apt-get update && apt-get install -y sudo
+      - name: Setup nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+          github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          nix_path: nixpkgs=channel:nixos-24.05
+      - uses: cachix/cachix-action@v15
+        with:
+          name: palkx
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          extraPullNames: nix-community
+      - name: Build nix flake
+        run: |
+          while true; do sleep 1; rm -rf /homeless-shelter; done &
+          nix build
+      - name: Check nix flake
+        run: nix flake check --all-systems
