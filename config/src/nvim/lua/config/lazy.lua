@@ -38,6 +38,7 @@ require("lazy").setup({
     -- { import = "plugins.tokyonight" },
     -- { import = "plugins.lang.nix" },
     { import = "plugins.lang.shell" },
+    { import = "plugins.misc.bigfile" },
     { import = "plugins.misc.tmux-navigator" },
   },
   defaults = {
