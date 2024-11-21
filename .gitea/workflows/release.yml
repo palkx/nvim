@@ -12,4 +12,4 @@ jobs:
   release:
     name: Release a new version
     needs: build
-    uses: xaked/actions/.gitea/workflows/release.yml@2.0.0
+    uses: xaked/actions/.gitea/workflows/cog-release.yml@2.0.0

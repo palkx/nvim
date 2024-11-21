@@ -1,0 +1,9 @@
+---
+name: check-commits
+on:
+  pull_request:
+
+jobs:
+  check-commits:
+    name: Check commits
+    uses: xaked/actions/.gitea/workflows/cog-check.yml@2.0.0
