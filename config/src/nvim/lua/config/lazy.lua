@@ -32,6 +32,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.sql" },
     { import = "lazyvim.plugins.extras.lang.terraform" },
     { import = "lazyvim.plugins.extras.lang.toml" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
@@ -50,7 +51,7 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "catppuccin-macchiato" } },
-  checker = { enabled = true, frequency = 60 * 60 * 24, }, -- automatically check for plugin updates once per day
+  checker = { enabled = true, frequency = 60 * 60 * 24 }, -- automatically check for plugin updates once per day
   performance = {
     cache = {
       enabled = true,
