@@ -21,8 +21,9 @@
   description = "A Lua-natic's neovim flake, with extra cats! nixCats!";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    systems.url = "github:nix-systems/default";
 
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
@@ -41,10 +42,10 @@
   };
 
   # see :help nixCats.flake.outputs
-  outputs = { self, nixpkgs, nixCats, ... }@inputs: let
+  outputs = { self, nixpkgs, nixCats, systems, ... }@inputs: let
     inherit (nixCats) utils;
     luaPath = "${./.}";
-    forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
+    forEachSystem = utils.eachSystem (import systems);
     # the following extra_pkg_config contains any values
     # which you want to pass to the config set of nixpkgs
     # import nixpkgs { config = extra_pkg_config; inherit system; }
