@@ -174,6 +174,12 @@
           nvim-web-devicons
           plenary-nvim
         ];
+        custom-tmux-navigator = [
+          vim-tmux-navigator
+        ];
+        custom-undotree = [
+          undotree
+        ];
       };
 
       # not loaded automatically at startup.
@@ -264,6 +270,9 @@
           # so it doesnt have a category above.
           # but we can still send the info from nix to lua that we want it!
           kickstart-gitsigns = true;
+
+          custom-tmux-navigator = true;
+          custom-undotree = true;
 
           # we can pass whatever we want actually.
           have_nerd_font = false;
