@@ -107,6 +107,7 @@
           lua-language-server
           nixd
           stylua
+          lazygit
         ];
         kickstart-debug = [
           delve
@@ -138,7 +139,7 @@
           cmp_luasnip
           cmp-nvim-lsp
           cmp-path
-          catppuccin-nvim
+          {plugin=catppuccin-nvim; name="catppuccin";}
           todo-comments-nvim
           mini-nvim
           nvim-treesitter.withAllGrammars
@@ -179,6 +180,11 @@
         ];
         custom-undotree = [
           undotree
+        ];
+        custom-snacks = [
+          {plugin=snacks-nvim; name="snacks.nvim";}
+          nvim-web-devicons
+          {plugin=mini-icons; name="mini.icons";}
         ];
       };
 
@@ -273,6 +279,7 @@
 
           custom-tmux-navigator = true;
           custom-undotree = true;
+          custom-snacks = true;
 
           # we can pass whatever we want actually.
           have_nerd_font = false;
