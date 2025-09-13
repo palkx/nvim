@@ -1,7 +1,7 @@
 {
   description = "NVIM Configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay?ref=54f4dbfdc4304444c43b11be1e63471005aa1d05";
