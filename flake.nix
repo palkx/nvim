@@ -1,59 +1,55 @@
 {
-  description = "NVIM Configuration";
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    flake-utils.url = "github:numtide/flake-utils";
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay?ref=54f4dbfdc4304444c43b11be1e63471005aa1d05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  description = "Neovim configuration, declaratively written using nix";
 
-  nixConfig = {
-    trusted-substituters = [
-      "https://nix-community.cachix.org"
-      "https://palkx.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "palkx.cachix.org-1:qaQoL5CXpGzUbqsIvxUEL7wUhoIrjV0Q8M4HbJ8/8S4="
-    ];
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+
+    nixvim.url = "github:nix-community/nixvim/nixos-25.05";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    systems.url = "github:nix-systems/default";
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      flake-utils,
-      neovim-nightly-overlay,
+    {
+      nixvim,
+      flake-parts,
       ...
-    }:
-    flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        overlayFlakeInputs = prev: final: {
-          neovim = neovim-nightly-overlay.packages.${system}.default.overrideAttrs (oa: {
-            nativeBuildInputs = oa.nativeBuildInputs ++ [ final.libtermkey ];
-          });
-        };
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = import inputs.systems;
 
-        overlayLazyVim = prev: final: { lazyVim = import ./packages/lazyVim.nix { pkgs = final; }; };
+      perSystem =
+        {
+          pkgs,
+          system,
+          ...
+        }:
+        let
+          nixvimLib = nixvim.lib.${system};
+          nixvimPkgs = nixvim.legacyPackages.${system};
+          nixvimModule = {
+            inherit pkgs;
+            module = import ./config; # import the module directly
+            # You can use `extraSpecialArgs` to pass additional arguments to your module files
+            extraSpecialArgs = {
+              # inherit (inputs) foo;
+            };
+          };
+          nvim = nixvimPkgs.makeNixvimWithModule nixvimModule;
+        in
+        {
+          checks = {
+            # Run `nix flake check .` to verify that your config is not broken
+            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+          };
 
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [
-            overlayFlakeInputs
-            overlayLazyVim
-          ];
+          packages = {
+            # Lets you run `nix run .` to start nixvim
+            default = nvim;
+          };
         };
-      in
-      rec {
-        packages.lazyVim = pkgs.lazyVim;
-        apps.lazyVim = {
-          type = "app";
-          program = "${packages.default}/bin/nvim";
-        };
-        packages.default = packages.lazyVim;
-        apps.default = apps.lazyVim;
-      }
-    );
+    };
 }
