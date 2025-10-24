@@ -10,6 +10,7 @@
       words.enabled = true;
       lazygit.enabled = true;
       picker.enabled = true;
+      indent.enabled = true;
     };
   };
 
