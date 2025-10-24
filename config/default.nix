@@ -6,6 +6,7 @@
 
     ./modules/plugins/lsp
 
+    ./modules/plugins/airline.nix
     ./modules/plugins/blink-cmp.nix
     ./modules/plugins/bufferline.nix
     ./modules/plugins/conform-nvim.nix

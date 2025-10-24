@@ -148,6 +148,9 @@
           jq = {
             command = "${lib.getExe pkgs.jq}";
           };
+          prettier = {
+            command = "${lib.getExe pkgs.nodePackages.prettier}";
+          };
           prettierd = {
             command = "${lib.getExe pkgs.prettierd}";
           };
