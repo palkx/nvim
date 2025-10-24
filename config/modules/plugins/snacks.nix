@@ -11,6 +11,7 @@
       lazygit.enabled = true;
       picker.enabled = true;
       indent.enabled = true;
+      scope.enabled = true;
     };
   };
 
