@@ -169,6 +169,15 @@
           yamlfmt = {
             command = "${lib.getExe pkgs.yamlfmt}";
           };
+          terraform_fmt = {
+            command = "${lib.getExe (
+              pkgs.terraform.overrideAttrs (oldAttrs: {
+                meta = lib.recursiveUpdate oldAttrs.meta {
+                  license = lib.licenses.gpl3Only;
+                };
+              })
+            )}";
+          };
         };
       };
     };

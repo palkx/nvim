@@ -12,7 +12,7 @@
     ./modules/plugins/conform-nvim.nix
     ./modules/plugins/fzf-lua.nix
     ./modules/plugins/gitsigns.nix
-    ./modules/plugins/lazygit.nix
+    # ./modules/plugins/lazygit.nix
     ./modules/plugins/mini.nix
     ./modules/plugins/neotree.nix
     ./modules/plugins/oil.nix

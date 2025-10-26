@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   plugins.snacks = {
     enable = true;
@@ -14,6 +14,12 @@
       scope.enabled = true;
     };
   };
+
+  extraPackages = [
+    pkgs.ripgrep
+    pkgs.fd
+    pkgs.lazygit
+  ];
 
   keymaps = [
     {
