@@ -1,0 +1,2 @@
+[commit_types]
+version = { bump_patch = true, changelog_title = "Version" }
