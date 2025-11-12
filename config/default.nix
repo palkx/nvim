@@ -12,14 +12,14 @@
     ./modules/plugins/conform-nvim.nix
     ./modules/plugins/fzf-lua.nix
     ./modules/plugins/gitsigns.nix
-    # ./modules/plugins/lazygit.nix
     ./modules/plugins/mini.nix
-    ./modules/plugins/neotree.nix
+    # ./modules/plugins/neotree.nix
     ./modules/plugins/oil.nix
     ./modules/plugins/snacks.nix
     ./modules/plugins/tmux-navigator.nix
     ./modules/plugins/treesitter.nix
     ./modules/plugins/undotree.nix
+    ./modules/plugins/venv-selector.nix
     ./modules/plugins/which-key.nix
   ];
 
