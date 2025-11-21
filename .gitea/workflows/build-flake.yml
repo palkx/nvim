@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup sudo (required for the next step)
         run: apt-get update && apt-get install -y sudo
       - name: Setup nix
