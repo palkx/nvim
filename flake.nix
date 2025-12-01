@@ -2,9 +2,9 @@
   description = "Neovim configuration, declaratively written using nix";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
-    nixvim.url = "github:nix-community/nixvim";
+    nixvim.url = "github:nix-community/nixvim/nixos-25.11";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
