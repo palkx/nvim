@@ -31,6 +31,7 @@ jobs:
           github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
           nix_path: nixpkgs=channel:nixos-25.11
       - name: Check for update and perform update
+        id: checkChanges
         run: |
           git config user.name gitea-bot
           git config user.email bot@git.palkoi.net
@@ -39,13 +40,18 @@ jobs:
 
           tmpfile="$(mktemp)"
           jq -srM '.[1].nodes.nixpkgs = .[0].nodes.nixpkgs_2|.[1].nodes.nixpkgs_2 = .[0].nodes.nixpkgs_2 | .[1]' ./nix-config/flake.lock flake.lock > "$tmpfile"
+          cat "$tmpfile" > flake.lock
           git add flake.lock
+          if [ -n "$(git diff --cached)" ]; then echo 'CHANGES=y'>>$GITHUB_OUTPUT; else echo 'CHANGES=n'>>$GITHUB_OUTPUT; fi
       - name: Build nix flake
+        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
         run: |
           nix build .
       - name: Check nix flake
+        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
         run: nix flake check --all-systems
       - name: Commit updates
+        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
         run: |
           git commit --no-gpg-sign -m 'chore(flake): update flake.lock'
           git push
