@@ -52,6 +52,8 @@ jobs:
         run: nix flake check --all-systems
       - name: Commit updates
         if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
+        # FIX: chore must trigger release
+        # Temporary commiting as fix, because chore not triggering release
         run: |
-          git commit --no-gpg-sign -m 'chore(flake): update flake.lock'
+          git commit --no-gpg-sign -m 'fix(flake): update flake.lock'
           git push
