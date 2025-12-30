@@ -1,2 +1,3 @@
 [commit_types]
 version = { bump_patch = true, changelog_title = "Version" }
+chore = { bump_patch = true, changelog_title = "Chore" }
