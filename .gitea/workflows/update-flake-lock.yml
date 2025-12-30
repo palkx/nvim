@@ -20,6 +20,7 @@ jobs:
           repository: xaked/nix-config
           path: nix-config
           ref: master
+          token: ${{ secrets.NIX_CONFIGURATION_GITEA_CLONE_TOKEN }}
       - name: Setup sudo and jq (required for the next step)
         run: apt-get update && apt-get install -y sudo jq
       - name: Setup nix
