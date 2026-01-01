@@ -11,6 +11,8 @@ jobs:
       contents: write
     name: Sync flake lock with main nix-configuration project
     runs-on: ubuntu-latest
+    outputs:
+      changes: ${{ steps.checkChanges.outputs.CHANGES }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
@@ -57,5 +59,6 @@ jobs:
           git push
   release:
     name: Release a new version
+    if: ${{ needs.update.outputs.changes == 'y' }}
     needs: update
     uses: xaked/actions/.gitea/workflows/cog-release.yml@2.0.0
