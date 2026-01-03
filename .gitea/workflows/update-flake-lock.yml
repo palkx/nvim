@@ -35,28 +35,20 @@ jobs:
           jq -srM '.[1].nodes.nixpkgs = .[0].nodes.nixpkgs_2|.[1].nodes.nixpkgs_2 = .[0].nodes.nixpkgs_2 | .[1]' ./nix-config/flake.lock flake.lock > "$tmpfile"
           cat "$tmpfile" > flake.lock
           git add flake.lock
-          if [ -n "$(git diff --cached)" ]; then echo 'CHANGES=y'>>$GITHUB_OUTPUT; else echo 'CHANGES=n'>>$GITHUB_OUTPUT; fi
-      - name: Setup sudo and jq (required for the next step)
-        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
-        run: apt-get update && apt-get install -y sudo jq
-      - name: Setup nix
-        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
-        uses: cachix/install-nix-action@v31
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-          github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
-          nix_path: nixpkgs=channel:nixos-25.11
-      - name: Build nix flake
-        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
-        uses: ./.gitea/workflows/build-flake.yml
+          if [ -n "$(git diff --cached)" ]; then git diff --cached; echo 'CHANGES=y'>>$GITHUB_OUTPUT; else echo 'CHANGES=n'>>$GITHUB_OUTPUT; fi
       - name: Commit updates
         if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
         run: |
           git commit --no-gpg-sign -m 'chore(flake): update flake.lock'
           git push
-  release:
-    name: Release a new version
+  build:
+    name: Build flake
     if: ${{ needs.update.outputs.changes == 'y' }}
     needs: update
-    uses: xaked/actions/.gitea/workflows/cog-release.yml@2.0.3
+    uses: ./.gitea/workflows/build-flake.yml
+  release:
+    name: Release a new version
+    needs: build
+    uses: xaked/actions/.gitea/workflows/cog-release.yml@2.1.0
+    with:
+      ref: ${{ github.ref_name }}
