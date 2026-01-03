@@ -23,15 +23,6 @@ jobs:
           path: nix-config
           ref: master
           token: ${{ secrets.NIX_CONFIGURATION_GITEA_CLONE_TOKEN }}
-      - name: Setup sudo and jq (required for the next step)
-        run: apt-get update && apt-get install -y sudo jq
-      - name: Setup nix
-        uses: cachix/install-nix-action@v31
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-          github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
-          nix_path: nixpkgs=channel:nixos-25.11
       - name: Check for update and perform update
         id: checkChanges
         run: |
@@ -45,13 +36,20 @@ jobs:
           cat "$tmpfile" > flake.lock
           git add flake.lock
           if [ -n "$(git diff --cached)" ]; then echo 'CHANGES=y'>>$GITHUB_OUTPUT; else echo 'CHANGES=n'>>$GITHUB_OUTPUT; fi
+      - name: Setup sudo and jq (required for the next step)
+        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
+        run: apt-get update && apt-get install -y sudo jq
+      - name: Setup nix
+        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+          github_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          nix_path: nixpkgs=channel:nixos-25.11
       - name: Build nix flake
         if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
-        run: |
-          nix build .
-      - name: Check nix flake
-        if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
-        run: nix flake check --all-systems
+        uses: ./.gitea/workflows/build-flake.yml
       - name: Commit updates
         if: ${{ steps.checkChanges.outputs.CHANGES == 'y' }}
         run: |
@@ -61,4 +59,4 @@ jobs:
     name: Release a new version
     if: ${{ needs.update.outputs.changes == 'y' }}
     needs: update
-    uses: xaked/actions/.gitea/workflows/cog-release.yml@2.0.0
+    uses: xaked/actions/.gitea/workflows/cog-release.yml@2.0.3
