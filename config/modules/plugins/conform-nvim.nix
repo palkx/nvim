@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   config = {
     extraConfigLuaPre =
@@ -41,7 +42,12 @@
 
     plugins.conform-nvim = {
       enable = true;
-      autoInstall.enable = true;
+      autoInstall = {
+        enable = true;
+        overrides = {
+          "terraform_fmt" = pkgs.asdf-vm;
+        };
+      };
       settings = {
         default_format_opts.lsp_format = "fallback";
         formatters_by_ft = {
