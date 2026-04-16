@@ -4,14 +4,14 @@
     enable = true;
     settings = {
       bigfile.enabled = true;
-      notifier.enabled = true;
-      quickfile.enabled = true;
       statuscolumn.enabled = true;
-      words.enabled = true;
       lazygit.enabled = true;
-      picker.enabled = true;
-      indent.enabled = true;
-      scope.enabled = true;
+      picker = {
+        enabled = true;
+        matcher = {
+          frecency = true;
+        };
+      };
     };
   };
 
@@ -434,6 +434,13 @@
       action = lib.nixvim.mkRaw "function() Snacks.bufdelete() end";
       options = {
         desc = "Delete Buffer";
+      };
+    }
+    {
+      key = "<leader>bo";
+      action = lib.nixvim.mkRaw "function() Snacks.bufdelete.other() end";
+      options = {
+        desc = "Delete Other Buffers";
       };
     }
     {

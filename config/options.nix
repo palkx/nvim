@@ -62,6 +62,12 @@
     scrolloff = 5;
   };
 
+  # Enable limit colomn
+  opts.colorcolumn = "80,120";
+  opts.wrap = false;
+  # This info is displayed in lightline
+  opts.showmode = false;
+
   diagnostic.settings = {
     update_in_insert = true;
     severity_sort = true;
@@ -112,4 +118,9 @@
   #   Comment.underline = true;
   #   Comment.bold = true;
   # };
+
+  withNodeJs = false;
+  withPerl = false;
+  withPython3 = false;
+  withRuby = false;
 }
